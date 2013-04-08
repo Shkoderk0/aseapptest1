@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>::: ASE Smart Controller :::</title>
+<style>
+TD.form {font-family: tahoma,arial; font-size: 12px; font-weight: bold;}
+INPUT.login {font-family: tahoma,arial; font-size: 12px; font-weight: bold; background: #ffffff;}
+BUTTON.grn {background: #e0ffe0; width: 20; height: 42;}
+BUTTON.grn:active {position: relative; top: 1px; left: 1px;}
+TD.tah10a {COLOR: #202020; text-decoration: none; font-family: verdana,tahoma,arial; font-size: 10px; font-weight: normal; text-align: center;}
+TD.tah12b {COLOR: #202020; text-decoration: none; font-family: verdana,tahoma,arial; font-size: 12px; font-weight: bold; text-align: left;}
+</style>
+<script type="text/javascript">
+function pLoad() {
+ var regerm = 'regerr';
+ var regern = 0;
+ var regerc = document.cookie.match ( '(^|;) ?' + regerm + '=([^;]*)(;|$)' );
+ var regert = '';
+ if ( regerc ) {
+  var regern = unescape ( regerc[2] );
+  if (regern == 1) {
+   regert = 'Wrong credentials! Please retry.';
+  } else if (regern == 2) {
+   regert = 'Good bye.';
+  } else if (regern == 3) {
+   regert = 'Session inactive by timeout.';
+  } else if (regern == 4) {
+   regert = 'No such user registered.';
+  } else if (regern == 5) {
+   regert = 'No such email registered.';
+  } else if (regern == 6) {
+   regert = 'Your password sent to email.';
+  } else if (regern == 7) {
+   regert = 'Cannot connect database<bR>with given credentials.';
+  } else if (regern == 8) {
+   regert = 'Invalid database.<br>Must be <a href="./engine.pl?action=init">initialized</a>.';
+  } else if (regern == 9) {
+   regert = 'Database initalized.<br>Please login again.';
+  } else {
+   regert = '';
+  }
+  document.cookie = regerm + "=; path=/; expires=Wed Mar  7 21:47:04 2007 GMT;";
+  document.getElementById('regerr').innerHTML = regert;
+ }
+ document.forms['login_form'].screen_width.value=screen.width;
+ document.forms['login_form'].screen_height.value=screen.height;
+}
+</script>
+</head>
+<BODY onLoad="pLoad();">
+<form action="./engine.pl" method=post name=login_form>
+<input type=hidden name="mode" value="auth"><input type=hidden name=screen_width><input type=hidden name=screen_height>
+<table width=100% height=100% cellspacing=0 cellpadding=0>
+<tr align=center valign=bottom width=100%><td width=100% height=30% valign=bottom align=center bgcolor=#E0E0E0><font face=Tahoma,Arial size=13 color=#181818><b><img src="./ASE-Logo.gif" border=0></font></td></tr>
+<tr align=center valign=top width=100%><td width=100% height=70% valign=top align=center bgcolor=#60d0fa><font face=Tahoma,Arial size=2 color=#102030><b></font><br><br><br><br>
+<table cellpadding=0 cellspacing=0 border=0><tr><td class=form>Username</td>
+<td><input type=text name=login size=10 maxlength=30 class=login></td>
+<td rowspan=2 width=20><button TYPE=submit class=grn></button></td>
+<td width=20 rowspan=3><img src="blank.gif" width="20" height="1" alt="" border="0"></td></tr>
+<tr><td class=form>Password&nbsp;&nbsp;</td><td><input type=password name=password size=10 maxlength=30 class=login></td></tr>
+<tr><td colspan=4 height=4><img src="blank.gif" width="1" height="4" alt="" border="0"></td></tr>
+<tr><td class=tah12b colspan=2 align=left>Remember my logon</td><td colspan=2 align=left><input type="checkbox" name="memo" value="yes"></td></tr>
+<tr><td colspan=4 height=15><img src="blank.gif" width="1" height="15" alt="" border="0"></td></tr>
+<tr><td class=tah10a colspan=4 align=center><br><br><div name="regerr" id="regerr">&nbsp;</div></td></tr>
+</table></td></tr></table>
+</form>
+</body>
+</html>
